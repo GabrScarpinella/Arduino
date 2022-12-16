@@ -50,6 +50,7 @@ void loop() {
     }
     for (pos=180; pos>=0; pos-=1) {
         //posToSensors();
+        servo.write(pos);
         if(laser<ultrasonic*10) {
             Serial.println("Object detected.");
         }

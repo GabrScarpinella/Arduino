@@ -30,7 +30,6 @@ void setup() {
     sensor.startContinuous(50);
 }
 void posToSensors() {               //Prints the servo's angle and the correspondent laser and ultrasonic measurements.
-    servo.write(pos);
     Serial.print(pos);              //Servo's angle
     Serial.print(":");
     Serial.print(laser);            //Laser's measurement (mm)
@@ -43,15 +42,16 @@ void loop() {
     laser=sensor.read();
     for (pos=0; pos<=180; pos+=1) {
         //posToSensors();
+        servo.write(pos);
         if(laser<ultrasonic*10) {
-        Serial.println("Object detected.");
+            Serial.println("Object detected.");
         }
         delay(2);
     }
     for (pos=180; pos>=0; pos-=1) {
         //posToSensors();
         if(laser<ultrasonic*10) {
-        Serial.println("Object detected.");
+            Serial.println("Object detected.");
         }
         delay(2);
     }
